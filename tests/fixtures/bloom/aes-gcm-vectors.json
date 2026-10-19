@@ -1,0 +1,59 @@
+{
+  "purpose": "Public synthetic test vectors; never use this key/nonces outside tests",
+  "generator": "Python cryptography AESGCM + struct/hashlib",
+  "key_base64": "QkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkI=",
+  "layout": "PGMENC01 header[32] || nonce[12] || ciphertext || tag[16] || SHA256[32]",
+  "aad": "exact 32-byte header",
+  "cases": [
+    {
+      "file": "native-gcm.enc",
+      "plaintext": "python-v1-0.dat",
+      "nonce_hex": "000102030405060708090a0b",
+      "bytes": 310,
+      "plaintext_bytes": 218,
+      "aad_hex": "50474d454e433031000000010000000100000000000000da0000000000000000",
+      "trailer_sha256": "f4547c3fd3b840ec8288dbbcd9e0c42b46a030bddb4d0fc0de25a50a27639bd1",
+      "whole_file_sha256": "f7b976697252955a158a258b8a884f3878c7d8cc8a63529032db78286ef12940"
+    },
+    {
+      "file": "provider-raw-gcm.enc",
+      "plaintext": "provider-v1.dat",
+      "nonce_hex": "0c0d0e0f1011121314151617",
+      "bytes": 2585,
+      "plaintext_bytes": 2493,
+      "aad_hex": "50474d454e433031000000010000000100000000000009bd0000000000000000",
+      "trailer_sha256": "78248f56bc35ca9373591f4a9e3362b6dc909703e4f2f3aaebd19e6c28bd0b6f",
+      "whole_file_sha256": "30023a7b580eb9b50a8aa9b7c7602d17cd7502ef2658c641c32e4271fdfd044f"
+    },
+    {
+      "file": "provider-gzip-gcm.enc",
+      "plaintext": "provider-v1.dat.gz",
+      "nonce_hex": "18191a1b1c1d1e1f20212223",
+      "bytes": 314,
+      "plaintext_bytes": 222,
+      "aad_hex": "50474d454e433031000000010000000100000000000000de0000000000000000",
+      "trailer_sha256": "441aaf3eb7878c4ca242f9cb715dde3893f2d9503f791ea735e1af2ee3e04547",
+      "whole_file_sha256": "f3242ba2ef366e53475c32ee4b9a933c19595c771a5f0d52fa3346144fb89556"
+    },
+    {
+      "file": "native-gcm-fresh-nonce.enc",
+      "plaintext": "python-v1-0.dat",
+      "nonce_hex": "2425262728292a2b2c2d2e2f",
+      "bytes": 310,
+      "plaintext_bytes": 218,
+      "aad_hex": "50474d454e433031000000010000000100000000000000da0000000000000000",
+      "trailer_sha256": "26462bfc482b2a0c1168031cd49183f95ed21aa692fd691bfb58f170298c775f",
+      "whole_file_sha256": "70979fd966812c65938335fb0ea8861d2a49f5ac7343e93a318f6887c957bb3f"
+    },
+    {
+      "file": "empty-gcm.enc",
+      "plaintext": null,
+      "nonce_hex": "303132333435363738393a3b",
+      "bytes": 92,
+      "plaintext_bytes": 0,
+      "aad_hex": "50474d454e433031000000010000000100000000000000000000000000000000",
+      "trailer_sha256": "1b4c25f335cf159c1339a87bbad60792836eae3402e60f26a558bbfb0a0add2c",
+      "whole_file_sha256": "70a37e7441db464869fe9c8c05fba345b0a1cfaf5f8bc6b4d5d81ebd4c58045b"
+    }
+  ]
+}

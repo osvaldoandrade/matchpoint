@@ -1,0 +1,21 @@
+/target
+/dist
+.DS_Store
+*.dmg
+*.pkg
+
+# Local datasets and generated previews/receipts.
+/test-data/*
+!/test-data/README.md
+
+# Local credentials, job state and matching results.
+.env
+.env.*
+!.env.example
+!.env.template
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+/result-*.txt

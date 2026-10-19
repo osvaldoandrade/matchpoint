@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: PicPay account-opening intention (client view)
+  version: 0.0.0-pending
+  description: >
+    Request shape supplied by the operator. Response semantics, idempotency,
+    rate limits and retry safety are not specified. Remote execution requires
+    an explicitly enabled saved HTTPS profile matching both URLs and client ID.
+    HTTP 2xx and ambiguous 5xx remain UNKNOWN. Do not infer is_customer=true.
+paths:
+  /oauth2/token:
+    post:
+      operationId: issueToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/ClientCredentials'
+                - $ref: '#/components/schemas/RefreshGrant'
+      responses:
+        '200':
+          description: Token JSON. Field rules are enforced by the client; business meaning of later calls is still pending.
+        default:
+          description: Unspecified.
+  /v1/partner/account-opening-intentions:
+    post:
+      operationId: createAccountOpeningIntention
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cpf]
+              properties:
+                cpf: { type: string }
+      responses:
+        default:
+          description: Not specified. Client stores HTTP status separately and does not infer is_customer.
+components:
+  schemas:
+    ClientCredentials:
+      type: object
+      required: [grant_type, scope, client_id, client_secret]
+      properties:
+        grant_type: { const: client_credentials }
+        scope: { const: partner.account.onboarding }
+        client_id: { type: string }
+        client_secret: { type: string }
+    RefreshGrant:
+      type: object
+      required: [grant_type, scope, client_id, client_secret, refresh_token]
+      properties:
+        grant_type: { const: refresh_token }
+        scope: { const: partner.account.onboarding }
+        client_id: { type: string }
+        client_secret: { type: string }
+        refresh_token: { type: string }

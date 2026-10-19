@@ -1,0 +1,32 @@
+# pgm-data ANSI / Ghostty 1.2+
+font-family = "PxPlus IBM VGA 8x16"
+font-family-bold = "PxPlus IBM VGA 8x16"
+font-family-italic = "PxPlus IBM VGA 8x16"
+font-family-bold-italic = "PxPlus IBM VGA 8x16"
+font-size = 16
+font-synthetic-style = false
+font-thicken = false
+font-feature = -calt,-liga,-dlig
+adjust-cell-height = 0%
+adjust-cell-width = 0%
+background = #0d131a
+foreground = #cfdde3
+background-opacity = 1
+palette = 0=#0d131a
+palette = 2=#4b927f
+palette = 7=#cfdde3
+palette = 8=#8ba0af
+palette = 9=#de919d
+palette = 10=#61b9a0
+palette = 11=#deb874
+cursor-color = #61b9a0
+window-width = 100
+window-height = 32
+window-padding-x = 8
+window-padding-y = 8
+keybind = super+equal=increase_font_size:2
+keybind = super+minus=decrease_font_size:2
+keybind = super+zero=reset_font_size
+keybind = super+one=set_font_size:12
+keybind = super+two=set_font_size:16
+keybind = super+three=set_font_size:20

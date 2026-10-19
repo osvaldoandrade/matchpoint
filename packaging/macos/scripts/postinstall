@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+mkdir -p /usr/local/bin
+ln -sfn /usr/local/pgm-data/bin/pgm-data /usr/local/bin/pgm-data
+chmod 755 /usr/local/pgm-data/bin/pgm-data
+exit 0

@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS attempts;
+DROP TABLE IF EXISTS records;
+DROP TABLE IF EXISTS batches;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS prepare_checkpoint;
+DROP TABLE IF EXISTS job_meta;
+DROP TABLE IF EXISTS schema_migrations;

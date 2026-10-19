@@ -1,0 +1,17 @@
+#!/bin/bash
+# Refuse to replace a foreign /usr/local/bin/pgm-data.
+set -euo pipefail
+LINK="/usr/local/bin/pgm-data"
+TARGET="/usr/local/pgm-data/bin/pgm-data"
+if [[ -e "$LINK" && ! -L "$LINK" ]]; then
+  echo "pgm-data: $LINK exists and is not a symlink; refusing to overwrite" >&2
+  exit 1
+fi
+if [[ -L "$LINK" ]]; then
+  current="$(readlink "$LINK")"
+  if [[ "$current" != "$TARGET" ]]; then
+    echo "pgm-data: $LINK points to $current; refusing to overwrite" >&2
+    exit 1
+  fi
+fi
+exit 0

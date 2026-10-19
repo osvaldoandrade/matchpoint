@@ -1,0 +1,50 @@
+[package]
+name = "pgm-data"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.94"
+license = "UNLICENSED"
+publish = false
+description = "Local CSV and Parquet matching against compressed Bloom filters"
+readme = "README.md"
+default-run = "pgm-data"
+
+[[bin]]
+name = "pgm-data"
+path = "src/main.rs"
+
+[[bin]]
+name = "pgm-bench"
+path = "src/bin/pgm-bench.rs"
+
+[dependencies]
+clap = { version = "=4.6.7", features = ["derive"] }
+ratatui = { version = "=0.30.2", default-features = false, features = ["crossterm_0_29", "all-widgets", "layout-cache", "macros", "underline-color"] }
+crossterm = { version = "=0.29.0", features = ["event-stream"] }
+tokio = { version = "=1.53.3", features = ["rt-multi-thread", "macros", "sync", "time", "signal", "fs", "io-util", "net", "test-util"] }
+reqwest = { version = "=0.13.5", default-features = false, features = ["json", "rustls", "http2", "charset", "stream"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+csv = "=1.4.0"
+rusqlite = { version = "=0.40.2", default-features = false, features = ["bundled"] }
+tracing = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter"] }
+parquet = { version = "=59.3.0", default-features = false, features = ["arrow", "snap", "flate2-rust_backend", "lz4", "zstd", "brotli"] }
+arrow-array = "=59.3.0"
+arrow-schema = "=59.3.0"
+thiserror = "=2.0.21"
+zeroize = "=1.9.1"
+nix = { version = "=0.31.3", features = ["fs"] }
+sha2 = "=0.11.1"
+uuid = { version = "=1.28.0", features = ["v4"] }
+futures-util = "=0.3.34"
+flate2 = { version = "=1.1.10", default-features = false, features = ["miniz_oxide"] }
+memmap2 = "=0.9.11"
+aws-lc-rs = { version = "=1.18.2", default-features = false, features = ["alloc", "non-fips"] }
+base64 = { version = "=0.23.1", default-features = false, features = ["std"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+security-framework = "=3.7.0"
+
+[dev-dependencies]
+tempfile = "=3.27.0"

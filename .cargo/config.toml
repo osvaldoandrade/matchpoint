@@ -1,0 +1,8 @@
+[profile.dev]
+debug = "line-tables-only"
+incremental = true
+
+[profile.release]
+lto = false
+codegen-units = 16
+strip = "symbols"

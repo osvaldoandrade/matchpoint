@@ -1,0 +1,7 @@
+# Matching domain — 2026-10-15
+
+Owner: local matching implementation. A key is the selected CSV/Parquet value (UTF-8 string, or canonical decimal integer for an integer Parquet column); it is not a number or necessarily a CPF. A rule selects a column/header/delimiter and an explicit transformation. Identity, SHA-256 lowercase hex and raw SHA-256 are distinct input encodings. The original key is retained for output.
+
+A filter is an immutable PGMBLOOM bit array with algorithm/seed/transform/capacity/FPP metadata. A snapshot is a verified downloaded/cached filter identified by its logical SHA-256. A match is its membership boolean: false means the bits rule excludes the key; true is probabilistic, not a customer/identity assertion. A job pins one input checksum, rule and snapshot and preserves row order/duplicates. A checkpoint commits an CSV byte position or Parquet row offset, processed/positive/negative counts and a durable output prefix together.
+
+Invariants: no key validation specific to CPF; no per-key HTTP; no zero substitution for errors; no silent transformation/filter change on resume; exact one output line per input record; all inserted keys are positive under identical encoding; capacity and length/hash/version bounds are enforced before publication; incomplete/corrupt input or output is not published as complete. Legacy UNKNOWN/customer evidence belongs to historical remote jobs and is not repurposed as Bloom membership.
