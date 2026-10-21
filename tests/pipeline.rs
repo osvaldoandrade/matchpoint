@@ -255,8 +255,8 @@ async fn unconfigured_remote_access_is_refused_before_any_call() {
     let world = world().await;
     let path = write_csv(world._tmp.path(), "52998224725\n");
     let mut cfg = config(&world);
-    cfg.endpoint = "https://api.picpay.com/v1/partner/account-opening-intentions".into();
-    cfg.token_url = "https://api.picpay.com/oauth2/token".into();
+    cfg.endpoint = "https://api.example.com/v1/partner/account-opening-intentions".into();
+    cfg.token_url = "https://api.example.com/oauth2/token".into();
     cfg.test_mode = false;
     cfg.contract = "pending".into();
     cfg.idempotency = false;

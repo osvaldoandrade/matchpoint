@@ -88,7 +88,7 @@ impl Evidence {
 pub enum ContractMode {
     /// Production provider semantics are not documented. No business result is inferred.
     Pending,
-    /// Local fixture documented in `docs/contracts/simulated-fixture.openapi.yaml`.
+    /// Local fixture documented in the project's Fixtures-e-contratos-de-teste Wiki page.
     SimulatedFixtureV1,
 }
 

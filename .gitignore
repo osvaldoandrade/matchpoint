@@ -6,7 +6,6 @@
 
 # Local datasets and generated previews/receipts.
 /test-data/*
-!/test-data/README.md
 
 # Local credentials, job state and matching results.
 .env

@@ -54,8 +54,8 @@ async fn empty_url_defaults_allow_local_preparation_and_refuse_remote_execution(
 fn saves_only_metadata_and_preserves_urls_when_credentials_change() {
     let (_dir, app, secrets) = app();
     let mut config = profile();
-    config.process_url = "https://api.picpay.com/custom/intent".into();
-    config.token_url = "https://api.picpay.com/custom/token".into();
+    config.process_url = "https://api.example.com/custom/intent".into();
+    config.token_url = "https://api.example.com/custom/token".into();
     app.configure_api(
         config.clone(),
         secret(),
@@ -140,11 +140,11 @@ fn invalid_configuration_does_not_overwrite_saved_credentials() {
         );
     }
     for url in [
-        "http://api.picpay.com/path",
-        "https://user:password@api.picpay.com/path",
-        "https://api.picpay.com/path?x=abc",
-        "https://api.picpay.com/path#token",
-        "https://api.picpay.com/\npath",
+        "http://api.example.com/path",
+        "https://user:password@api.example.com/path",
+        "https://api.example.com/path?x=abc",
+        "https://api.example.com/path#token",
+        "https://api.example.com/\npath",
         "file:///tmp/config",
     ] {
         for field in ["process", "token"] {
@@ -233,7 +233,7 @@ fn authorization_requires_enabled_profile_and_exact_destinations_and_identity() 
             "test" => changed.test_mode = true,
             "contract" => changed.contract = "simulated-fixture-v1".into(),
             "invalid-contract" => changed.contract = "other".into(),
-            "http" => changed.endpoint = "http://api.picpay.com/intent".into(),
+            "http" => changed.endpoint = "http://api.example.com/intent".into(),
             _ => unreachable!(),
         }
         assert!(config.authorize_job(&changed).is_err(), "{field}");
@@ -244,8 +244,8 @@ fn authorization_requires_enabled_profile_and_exact_destinations_and_identity() 
 async fn cli_jobs_inherit_profile_and_batch_boundaries_are_exact() {
     let (dir, app, _secrets) = app();
     let mut config = profile();
-    config.process_url = "https://api.picpay.com/custom/intent".into();
-    config.token_url = "https://api.picpay.com/custom/token".into();
+    config.process_url = "https://api.example.com/custom/intent".into();
+    config.token_url = "https://api.example.com/custom/token".into();
     app.configure_api(config.clone(), secret(), None).unwrap();
     assert_eq!(DEFAULT_BATCH_SIZE, 1_000);
     for (rows, sizes) in [
@@ -348,7 +348,7 @@ fn malformed_or_secret_bearing_saved_settings_fail_without_echo() {
     let (_dir, app, _secrets) = app();
     for contents in [
         "not-json",
-        r#"{"client_id":"test","process_url":"https://user:test-only-secret@api.picpay.com/intent","token_url":"https://api.picpay.com/oauth2/token"}"#,
+        r#"{"client_id":"test","process_url":"https://user:test-only-secret@api.example.com/intent","token_url":"https://api.example.com/oauth2/token"}"#,
     ] {
         std::fs::write(app.paths.config_file(), contents).unwrap();
         let error = app.api_config().unwrap_err().to_string();

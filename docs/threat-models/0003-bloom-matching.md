@@ -1,7 +1,0 @@
-# Bloom source and local matching threat delta — 2026-10-15
-
-Assets are identifier datasets, bearer credentials, filter integrity and ordered boolean results. A remote source can return malformed/oversized GZip or binary headers; a local process can interrupt/replay writes or mutate inputs. The new executable has a single source GET and no identifier endpoint. Keep identifiers out of network requests, logs, URLs and telemetry. The legacy library/data remains isolated.
-
-Controls: HTTPS with no credentials/query/fragment/redirect, explicit loopback testing only; Keychain bearer bound to the saved source URL and sensitive request header; connect/overall deadlines and compressed/decompressed/header/allocation caps; reject GZip optional header expansions, invalid CRC/trailing data and unknown binary version/algorithms; verify content SHA-256 before exposure. HTTPS establishes transport trust; checksum alone does not authenticate a malicious producer. No arbitrary code transformation or executable plugin is allowed.
-
-Atomic private files, source/job process locks, immutable input/filter fingerprints, pinned resume and output-prefix validation protect tampering/replay. Transformation mismatch and parse/download/disk failure abort rather than emit `false`. UTF-8 key escaping prevents extra output records. UI secrets remain masked and are zeroed when editors close; raw identifiers never enter diagnostics. Tests cover these negative paths. New output files contain the requested original keys and use owner-only permissions.
