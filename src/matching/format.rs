@@ -160,7 +160,7 @@ impl Bloom {
         }
         let tmp = path.with_extension(format!("{}.partial", uuid::Uuid::new_v4()));
         let result = (|| {
-            let file = File::create(&tmp)?;
+            let file = crate::disk::create_private_file(&tmp)?;
             crate::error::restrict_file(&tmp)?;
             let mut gzip = GzEncoder::new(file, Compression::fast());
             gzip.write_all(&self.header())?;

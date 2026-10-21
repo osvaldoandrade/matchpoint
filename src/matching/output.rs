@@ -24,10 +24,7 @@ pub(super) fn copy(source: &Path, target: &Path) -> Result<(), Error> {
     }
     let tmp = target.with_extension(format!("{}.partial", uuid::Uuid::new_v4()));
     let result = (|| {
-        let mut output = std::fs::OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&tmp)?;
+        let mut output = crate::disk::create_private_file(&tmp)?;
         crate::error::restrict_file(&tmp)?;
         std::io::copy(&mut std::fs::File::open(source)?, &mut output)?;
         output.sync_all()?;
