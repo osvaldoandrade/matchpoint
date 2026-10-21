@@ -15,7 +15,7 @@ curl.exe --proto '=https' --tlsv1.2 -fSL https://raw.githubusercontent.com/osval
 if ($LASTEXITCODE -eq 0) { powershell -NoProfile -ExecutionPolicy Bypass -File .\install-matchpoint.ps1 }
 ```
 
-O instalador prepara as ferramentas, instala Rust se necessário, clona o código e compila com `cargo build --locked --release`. O código é privado: sua conta GitHub precisa ter acesso. No primeiro uso, macOS pode pedir as ferramentas Apple; Windows pode exigir ativação do WSL, reinício e criação do usuário Linux. Conclua a etapa indicada e execute novamente.
+O instalador prepara as ferramentas, instala Rust se necessário, clona o código e compila com `cargo build --locked --release`. O código está disponível publicamente no GitHub. No primeiro uso, macOS pode pedir as ferramentas Apple; Windows pode exigir ativação do WSL, reinício e criação do usuário Linux. Conclua a etapa indicada e execute novamente.
 
 Abra um novo terminal (Ubuntu no Windows) e execute:
 
