@@ -45,12 +45,14 @@ impl SecretStore for MemorySecrets {
 }
 
 pub struct KeychainSecrets {
+    #[cfg(target_os = "macos")]
     service: &'static str,
 }
 
 impl KeychainSecrets {
     pub fn new() -> Self {
         Self {
+            #[cfg(target_os = "macos")]
             service: "pgm-data",
         }
     }
