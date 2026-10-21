@@ -44,3 +44,5 @@ try {
     $env:OS = $previousOS
     Remove-Item Function:wsl.exe
 }
+# Expected native failures above must not leak into the CI shell wrapper.
+$global:LASTEXITCODE = 0
